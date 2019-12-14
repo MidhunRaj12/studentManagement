@@ -15,10 +15,10 @@ public interface AdminService {
 	APIResponseModel delete(long id);
     APIResponseModel findByTeacherId(long teacherId);
 
-	/*
-	 * List<Student> findAllStudents(List<Long> ids); List<Teacher>
-	 * findAllTeachers(List<Long> ids);
-	 */
+	
+	 List<Student> findAllStudents(List<Long> ids); 
+	 List<Teacher> findAllTeachers(List<Long> ids);
+	
     List<Teacher> findAllTeachers();
     List<Student> findAllStudents();
 

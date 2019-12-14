@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 		return response;
 	}
 
-	@Override
+	
 	public APIResponseModel update(Student student) {
 		APIResponseModel response = null;
 		try {
@@ -108,7 +108,7 @@ public class AdminServiceImpl implements AdminService {
 	public APIResponseModel findByTeacherId(long teacherId) {
 		APIResponseModel response = null;
 		try {
-			Teacher teacher = TeacherRepository.findByTeacherId(teacherId);
+			Teacher teacher = TeacherRepository.findById(teacherId).get();
 			response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
 					AdminServiceConstants.MESSAGE_SUCCESS, teacher);
 		} catch (Exception e) {
@@ -119,7 +119,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public APIResponseModel findAllStudents() {
+	public List<Student> findAllStudents() {
 		APIResponseModel response = null;
 		try {
 			List<Student> studentList = (List<Student>) StudentRepository.findAll();
@@ -133,11 +133,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public APIResponseModel findAllTeachers() {
+	public List<Teacher> findAllTeachers() {
 		APIResponseModel response = null;
 		try {
 			List<Teacher> teacherList = (List<Teacher>) TeacherRepository.findAll();
-			response = utils.getResponseModel(teacherList, AdminServiceConstants.CODE_SUCCESS,
+			response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
 					AdminServiceConstants.MESSAGE_SUCCESS);
 		} catch (Exception e) {
 			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,

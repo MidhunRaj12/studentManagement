@@ -11,6 +11,7 @@
 	<groupId>com.infosys.attendance.books</groupId>
 	<artifactId>student-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>student-service</name>
 	<description>Student Service</description>
 

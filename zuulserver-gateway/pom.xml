@@ -11,6 +11,7 @@
 	<groupId>com.infosys.library.zuul</groupId>
 	<artifactId>zuulserver-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>zuulserver-gateway</name>
 	<description>Zuul server for Attendance Management</description>
 

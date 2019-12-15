@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
 	public APIResponseModel save(Student student) {
 		APIResponseModel response = null;
 		try {
-			if (StringUtils.isEmpty(student.getName())) {
+			if (StringUtils.isEmpty(student.getId())) {
 				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT,
 						AdminServiceConstants.MESSAGE_INVALID_INPUT);
 				/*
@@ -56,15 +56,37 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
-	public APIResponseModel update(Student student) {
+	public APIResponseModel updateCourse(long Id) {
 		APIResponseModel response = null;
+		Student student = StudentRepository.findById(Id).get();
 		try {
-			if (StringUtils.isEmpty(student.getName())) {
+			if (StringUtils.isEmpty(student.getId())) {
 				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT,
 						AdminServiceConstants.MESSAGE_INVALID_INPUT);
 			} else {
 				Student studentToUpdate = StudentRepository.findById(student.getId()).get();
 				studentToUpdate.setCourseId(student.getCourseId());
+				StudentRepository.save(studentToUpdate);
+				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
+						AdminServiceConstants.MESSAGE_SUCCESS, student);
+			}
+		} catch (Exception e) {
+			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,
+					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		}
+		return response;
+	}
+	
+	public APIResponseModel updateRegno(long Id) {
+		APIResponseModel response = null;
+		Student student = StudentRepository.findById(Id).get();
+		try {
+			if (StringUtils.isEmpty(student.getId())) {
+				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT,
+						AdminServiceConstants.MESSAGE_INVALID_INPUT);
+			} else {
+				Student studentToUpdate = StudentRepository.findById(student.getId()).get();
+				studentToUpdate.setRegNo(student.getRegNo());
 				StudentRepository.save(studentToUpdate);
 				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
 						AdminServiceConstants.MESSAGE_SUCCESS, student);
@@ -119,11 +141,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Student> findAllStudents() {
+	public APIResponseModel findAllStudents() {
 		APIResponseModel response = null;
 		try {
 			List<Student> studentList = (List<Student>) StudentRepository.findAll();
-			response = utils.getResponseModel(studentList, AdminServiceConstants.CODE_SUCCESS,
+			response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,studentList,
 					AdminServiceConstants.MESSAGE_SUCCESS);
 		} catch (Exception e) {
 			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,
@@ -133,12 +155,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Teacher> findAllTeachers() {
+	public APIResponseModel findAllTeachers() {
 		APIResponseModel response = null;
 		try {
 			List<Teacher> teacherList = (List<Teacher>) TeacherRepository.findAll();
 			response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
-					AdminServiceConstants.MESSAGE_SUCCESS);
+					AdminServiceConstants.MESSAGE_SUCCESS,teacherList);
 		} catch (Exception e) {
 			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,
 					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());

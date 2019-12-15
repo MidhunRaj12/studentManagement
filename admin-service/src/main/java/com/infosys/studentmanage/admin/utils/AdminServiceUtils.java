@@ -36,4 +36,21 @@ public class AdminServiceUtils {
 		response.setTeacher(teacher);
 		return response;
 	}
+	public APIResponseModel getResponseModel(String responseCode,List<Student> students,String description)
+	{
+		APIResponseModel response = new APIResponseModel();
+		response.setResponseCode(responseCode);
+		response.setDescription(description);
+		response.setStudents(students);
+		return response;
+	}
+	
+	public APIResponseModel getResponseModel(String responseCode, String description, List<Teacher> teachers)
+	{
+		APIResponseModel response = new APIResponseModel();
+		response.setResponseCode(responseCode);
+		response.setDescription(description);
+		response.setTeachers(teachers);
+		return response;
+	}
 }

@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.infosys.attendance.zuul.ZuulServerApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.309 s <<< FAILURE! - in com.infosys.attendance.zuul.ZuulServerApplicationTests
+com.infosys.attendance.zuul.ZuulServerApplicationTests  Time elapsed: 0.307 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+

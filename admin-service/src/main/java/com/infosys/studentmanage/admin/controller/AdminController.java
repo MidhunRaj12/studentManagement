@@ -47,27 +47,34 @@ public class AdminController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/student/{RegNo}")
-	public APIResponseModel updateStudent(@PathVariable("RegNo") Long RegNo)
+	@PutMapping("/student/{Id}")
+	public APIResponseModel updateStudentCourse(@PathVariable("Id") Long Id)
 	{
-		return adminService.update(RegNo);
-	}
-	
-	@GetMapping(value = "/student/{RegNo}")
-	public APIResponseModel getStudent(@PathVariable("RegNo") Long RegNo)
-	{
-		return adminService.findById(RegNo);
+		return adminService.updateRegno(Id);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@DeleteMapping(value = "/student/{RegNo}")
-	public APIResponseModel deleteStudent(@PathVariable("RegNo") Long RegNo)
+	@PutMapping("/student/course/{Id}")
+	public APIResponseModel updateStudentRegNo(@PathVariable("Id") Long Id)
 	{
-		return adminService.delete(RegNo);
+		return adminService.updateCourse(Id);
+	}
+	
+	@GetMapping(value = "/student/{Id}")
+	public APIResponseModel getStudent(@PathVariable("Id") Long Id)
+	{
+		return adminService.findById(Id);
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping(value = "/student/{Id}")
+	public APIResponseModel deleteStudent(@PathVariable("Id") Long Id)
+	{
+		return adminService.delete(Id);
 	}
 	
 	@GetMapping(value = "/fetchStudents")
-	public List<Student> getAllStudents()
+	public APIResponseModel getAllStudents()
 	{
 		return adminService.findAllStudents();
 	}
@@ -79,7 +86,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "/fetchTeachers")
-	public List<Teacher> getAllTeachers()
+	public APIResponseModel getAllTeachers()
 	{
 		return adminService.findAllTeachers();
 	}

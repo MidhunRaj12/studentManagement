@@ -18,7 +18,7 @@ public class DataReceiver {
 	public void receiveEvents(String payload) throws InterruptedException {
 	  Gson gson = new Gson();
 	  Student studObject = gson.fromJson(payload, Student.class);
-	  service.updateStatus(studObject);
+	//  service.updateStatus(studObject);
 	}	
    
 }

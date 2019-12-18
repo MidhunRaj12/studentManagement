@@ -48,7 +48,7 @@ public class TeacherServiceImpl implements TeacherService{
     }
 	
 	@Override
-	public APIResponseModel fetchCourseSchedule(Long Id) {
+	public APIResponseModel fetchCourseSchedule(long Id) {
 		APIResponseModel response = null;
 		try
 		{
@@ -81,10 +81,10 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 	
 	@Override
-	public APIResponseModel findTeacerById(Long teacherId) {
+	public APIResponseModel findTeacerById(Long teacher_Id) {
 		APIResponseModel response = null;
 		try {
-			Teacher teacher = teacherRepository.findById(teacherId).get();
+			Teacher teacher = teacherRepository.findById(teacher_Id).get();
 			response = utils.getResponseModel(MemberServiceConstants.CODE_SUCCESS,
 					MemberServiceConstants.MESSAGE_SUCCESS, teacher);
 		} catch (Exception e) {

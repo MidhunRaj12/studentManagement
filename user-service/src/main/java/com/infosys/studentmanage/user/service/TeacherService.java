@@ -6,7 +6,7 @@ import com.infosys.studentmanage.user.model.User;
 
 public interface TeacherService {
 	
-	APIResponseModel fetchCourseSchedule(Long Id);
+	APIResponseModel fetchCourseSchedule(long Id);
 	APIResponseModel fetchStudentDetails(Long Id);
 	APIResponseModel findTeacerById(Long Id);
 	APIResponseModel markAttendance(Attendance attendance);

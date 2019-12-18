@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -19,8 +19,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-    @Column(name = "course_id")
-    private String course_id;
 	public long getId() {
 		return id;
 	}
@@ -46,12 +44,6 @@ public class User {
 		this.role = role;
 	}
 
-	public String getcourse_id() {
-		return course_id;
-	}
-	public void setcourse_id(String course_id) {
-		this.course_id = course_id;
-	}
 
     
 }

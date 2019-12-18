@@ -53,27 +53,4 @@ public class AttendanceHistoryDTO {
 		this.attended = attended;
 	}
     
-   
-
-	/*
-	 * public static AttendanceHistoryDTO dtoToDaoConversion(BookIssueHistory
-	 * daoObject, StudentDTO bookDTO, User memberDao) { AttendanceHistoryDTO
-	 * bookIssueHistoryDTO = new AttendanceHistoryDTO();
-	 * 
-	 * bookIssueHistoryDTO.setId(daoObject.getId());
-	 * bookIssueHistoryDTO.setBook(bookDTO);
-	 * bookIssueHistoryDTO.setRequestDate(daoObject.getRequestDate());
-	 * bookIssueHistoryDTO.setStatus(daoObject.getStatus());
-	 * bookIssueHistoryDTO.setIssuedOn(daoObject.getIssuedOn());
-	 * bookIssueHistoryDTO.setReturnedOn(daoObject.getReturnedOn());
-	 * 
-	 * UserDTO member = new UserDTO(); member.setId(memberDao.getId());
-	 * member.setMemberName(memberDao.getMemberName());
-	 * member.setPassword(memberDao.getPassword());
-	 * member.setRoleId(memberDao.getRoleId()); member.setAge(memberDao.getAge());
-	 * member.setAddress(memberDao.getAddress());
-	 * bookIssueHistoryDTO.setMember(member);
-	 * 
-	 * return bookIssueHistoryDTO; }
-	 */
 }

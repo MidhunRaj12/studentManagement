@@ -5,47 +5,54 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "student")
+
 public class Student {
 
     @Id
     @Column(name = "student_id")
     private long id;
     
-    @Column(name = "RegNo")
-    private long RegNo;
+    @Column(name = "reg_no")
+    private Long reg_no;
     
-    @Column(name = "Name")
-    private String studentName;
+    @Column(name = "name")
+    private String name;
     
     @Column(name = "course_id")
-    private long courseId;
+    private Long courseId;
     
 	public long getId() {
 		return id;
 	}
-	public long getRegNo() {
-		return RegNo;
+	public Long getRegNo() {
+		return reg_no;
 	}
-	public void setRegNo(long regNo) {
-		RegNo = regNo;
+	public void setRegNo(Long reg_no) {
+		this.reg_no = reg_no;
 	}
 	public String getStudentName() {
-		return studentName;
+		return name;
 	}
 	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+		this.name = studentName;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getCourseId() {
+	public Long getCourseId() {
 		return courseId;
 	}
-	public void setCourseId(long courseId) {
+	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
 
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name +  ", courseId=" + courseId
+				+ ", reg_no=" + reg_no +  "]";
+	}
 }

@@ -18,8 +18,8 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-//	static final String CLIENT_ID = "LibClient";
-//	static final String CLIENT_SECRET = "LibSecret";
+	static final String CLIENT_ID = "Client";
+	static final String CLIENT_SECRET = "LibSecret";
 	static final String GRANT_TYPE_PASSWORD = "password";
 	static final String AUTHORIZATION_CODE = "authorization_code";
     static final String REFRESH_TOKEN = "refresh_token";

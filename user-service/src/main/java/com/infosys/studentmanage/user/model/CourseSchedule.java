@@ -12,37 +12,38 @@ import javax.persistence.Table;
 public class CourseSchedule {
 	@Id
     @Column(name = "course_id")
-    private long id;
+    private Long id;
     
 	@Column(name = "teacher_id")
-    private long teacherId;
+    private Long teacher_id;
      
     @Column(name = "course_date")
-    private Date courseDate;
+    private Date course_date;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getTeacherId() {
-		return teacherId;
+	public Long getTeacherId() {
+		return teacher_id;
 	}
 
-	public void setTeacherId(long teacherId) {
-		this.teacherId = teacherId;
+	public void setTeacherId(Long teacher_id) {
+		this.teacher_id = teacher_id;
 	}
 
 	public Date getCourseDate() {
-		return courseDate;
+		return course_date;
 	}
 
-	public void setCourseDate(Date courseDate) {
-		this.courseDate = courseDate;
+	public void setCourseDate(Date course_date) {
+		this.course_date = course_date;
 	}
-    
+
+
 
 	}

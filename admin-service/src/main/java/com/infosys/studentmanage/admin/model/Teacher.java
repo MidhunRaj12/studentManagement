@@ -32,7 +32,5 @@ public class Teacher {
 		this.teacherName = teacherName;
 	}
     
-
-
     
 }

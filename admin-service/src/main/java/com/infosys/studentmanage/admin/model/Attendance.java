@@ -10,43 +10,47 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "StudentAttendance")
+@Table(name = "attendance")
 public class Attendance {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "course_id")
-    private long courseId;
-    @Column(name = "RegNo")
-    private String RegNo;
+    private Long course_id;
+    @Column(name = "student_id")
+    private Long student_id;
     @Column(name = "course_time")
-    private Date courseTime;
+    private Date course_time;
     @Column(name = "attended")
-    private boolean attended;
-    
-	public long getCategoryId() {
-		return courseId;
+    private Boolean attended;
+	public Long getCourse_id() {
+		return course_id;
 	}
-	public Date getCourseTime() {
-		return courseTime;
+	public void setCourse_id(Long course_id) {
+		this.course_id = course_id;
 	}
-	public void setCourseTime(Date courseTime) {
-		this.courseTime = courseTime;
+	public Long getStudent_id() {
+		return student_id;
 	}
-	public void setCourseId(long courseId) {
-		this.courseId = courseId;
+	public void setStudent_id(Long student_id) {
+		this.student_id = student_id;
 	}
-	public String getRegNumber() {
-		return RegNo;
+	public Date getCourse_time() {
+		return course_time;
 	}
-	public void setRegNumber(String RegNo) {
-		this.RegNo = RegNo;
+	public void setCourse_time(Date course_time) {
+		this.course_time = course_time;
 	}
-	public boolean isAttended() {
+	public Boolean getAttended() {
 		return attended;
 	}
-	public void setAttended(boolean attended) {
+	public void setAttended(Boolean attended) {
 		this.attended = attended;
 	}
-
+    
+	@Override
+	public String toString() {
+		return "Student [id=" + course_id + ", student_id=" + student_id +  ", course_time=" + course_time
+				+ ", attended=" + attended +  "]";
+	}
 }

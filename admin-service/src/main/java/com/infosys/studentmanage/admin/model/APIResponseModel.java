@@ -2,6 +2,7 @@ package com.infosys.studentmanage.admin.model;
 
 import java.util.List;
 
+
 public class APIResponseModel {
 	
 	private String responseCode;
@@ -10,9 +11,16 @@ public class APIResponseModel {
 	private Teacher teacher;
 	private List<Student> students;
 	private List<Teacher> teachers;
+	private List<Attendance> attendance;
 	
 	public String getResponseCode() {
 		return responseCode;
+	}
+	public List<Attendance> getAttendance() {
+		return attendance;
+	}
+	public void setAttendance(List<Attendance> attendance) {
+		this.attendance = attendance;
 	}
 	public void setResponseCode(String responseCode) {
 		this.responseCode = responseCode;

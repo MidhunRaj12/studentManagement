@@ -1,8 +1,6 @@
 package com.infosys.studentmanage.admin.controller;
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,26 +36,41 @@ public class AdminController {
         this.objectMapper = objectMapper;
         this.request = request;
     }
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("")
+	public String hellow()
+	{
+		return "heloo";
+	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/student")
 	public APIResponseModel addStudent(@RequestBody Student student)
-	{
-		return adminService.save(student);
+	{	//System.out.println(student.getStudentName());
+		return adminService.saveStudent(student);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/student/{Id}")
-	public APIResponseModel updateStudentCourse(@PathVariable("Id") Long Id)
-	{
-		return adminService.updateRegno(Id);
+	@PostMapping("/teacher")
+	public APIResponseModel addTeacher(@RequestBody Teacher teacher)
+	{	//System.out.println(student.getStudentName());
+		return adminService.saveTeacher(teacher);
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/student/course/{Id}")
-	public APIResponseModel updateStudentRegNo(@PathVariable("Id") Long Id)
+	@PutMapping("/student/update")
+	public APIResponseModel updateStudent(@RequestBody Student student)
 	{
-		return adminService.updateCourse(Id);
+		
+		return adminService.updateStudent(student);
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/teacher/update")
+	public APIResponseModel updateTeacher(@RequestBody Teacher teacher)
+	{
+		
+		return adminService.updateTeacher(teacher);
 	}
 	
 	@GetMapping(value = "/student/{Id}")
@@ -80,8 +93,9 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "/findTeacher/{TeacherId}")
-	public APIResponseModel getTeacher(@PathVariable Long teacherId)
+	public APIResponseModel getTeacher(@PathVariable("TeacherId") Long teacherId)
 	{
+		System.out.println(teacherId);
 		return adminService.findByTeacherId(teacherId);
 	}
 	
@@ -91,6 +105,11 @@ public class AdminController {
 		return adminService.findAllTeachers();
 	}
 	
+	@GetMapping(value = "/attendanceReport")
+	public APIResponseModel getReport()
+	{
+		return adminService.getReport();
+	}
 	
 
 }

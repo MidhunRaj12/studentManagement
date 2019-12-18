@@ -5,15 +5,12 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.infosys.studentmanage.user.model.AttendanceHistory;
+import com.infosys.studentmanage.user.model.Attendance;
+
 
 @Repository
-public interface AttendanceRepo extends CrudRepository<AttendanceHistory, Long>{
+public interface AttendanceRepo extends CrudRepository<Attendance, Long>{
 	
-	List<AttendanceHistory> findByStudentId(Long Id);
+	List<Attendance> findByStudentId(Long Id);
 	
-	/*
-	 * List<BookIssueHistory> findByMemberIdAndStatus(long memberId, String status);
-	 */
-
 }

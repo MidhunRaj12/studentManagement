@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.infosys.studentmanage.admin.model.Student;
+import com.infosys.studentmanage.admin.model.Teacher;
 
 
 @Repository

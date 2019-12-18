@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.infosys.studentmanage.admin.model.APIResponseModel;
+import com.infosys.studentmanage.admin.model.Attendance;
 import com.infosys.studentmanage.admin.model.Teacher;
 import com.infosys.studentmanage.admin.model.Student;
 
@@ -51,6 +52,16 @@ public class AdminServiceUtils {
 		response.setResponseCode(responseCode);
 		response.setDescription(description);
 		response.setTeachers(teachers);
+		return response;
+	}
+
+	
+	public APIResponseModel getResponseModel(List<Attendance> attendance, String responseCode, String description )
+	{
+		APIResponseModel response = new APIResponseModel();
+		response.setResponseCode(responseCode);
+		response.setDescription(description);
+		response.setAttendance(attendance);
 		return response;
 	}
 }

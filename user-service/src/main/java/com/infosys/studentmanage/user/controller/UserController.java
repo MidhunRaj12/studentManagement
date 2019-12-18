@@ -20,13 +20,13 @@ import com.infosys.studentmanage.user.UserServiceApplication;
 import com.infosys.studentmanage.user.constants.MemberServiceConstants;
 import com.infosys.studentmanage.user.constants.MemberServiceConstants.ReportTypeEnum;
 import com.infosys.studentmanage.user.model.APIResponseModel;
-import com.infosys.studentmanage.user.model.AttendanceHistory;
+import com.infosys.studentmanage.user.model.Attendance;
 import com.infosys.studentmanage.user.model.User;
 import com.infosys.studentmanage.user.service.StudentService;
 import com.infosys.studentmanage.user.service.TeacherService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping()
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserController {
 	
@@ -43,20 +43,20 @@ public class UserController {
         this.request = request;
     }
 	
-//	@PreAuthorize("hasRole('USER')")
-//	@PostMapping("/student")
-//	public APIResponseModel addMember(@RequestBody User member)
-//	{
-//		return teacherService.save(member);
-//	}
-//	
-//	@PreAuthorize("hasRole('USER')")
-//	@PostMapping(value = "/raiseRequest")
-//	public APIResponseModel raiseBookRequest(@RequestBody AttendanceHistory attendanceHistory)
-//	{
-//		return teacherService.save(attendanceHistory);
-//	}
-//	
+	@PreAuthorize("hasRole('STUDENT')")
+	@PostMapping("/student/{Id}")
+	public APIResponseModel studentDetails(@PathVariable("Id") Long Id)
+	{
+		return studentService.findStudentById(Id);
+	}
+
+	@PreAuthorize("hasRole('TEACHER')")
+	@PostMapping("/teacher/{Id}")
+	public APIResponseModel teacherDetails(@PathVariable("Id") Long Id)
+	{
+		return teacherService.findTeacerById(Id);
+	}
+	
 //	@PreAuthorize("hasRole('ADMIN')")
 //	@PutMapping(value = "/{issueId}")
 //	public APIResponseModel raiseBookRequest(@PathVariable long issueId, @FormParam(value = "status") String status)
@@ -64,53 +64,33 @@ public class UserController {
 //		return teacherService.update(issueId, status);
 //	}
 	
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('TEACHER')")
 	@GetMapping(value = "/teacher/{teacherId}")
-	public APIResponseModel fetchSchedule(@PathVariable long teacherId)
+	public APIResponseModel fetchSchedule(@PathVariable Long teacherId)
 	{
-//		if(teacherId)
-//		{
-			String oauthHeader = request.getHeader(MemberServiceConstants.OAUTH_HEADER);
-			return teacherService.fetchCourseSchedule(teacherId, oauthHeader);
-//		}
-//		else
-//			return null;
-			
+			return teacherService.fetchCourseSchedule(teacherId);		
 		
 	}
 	
-	@PreAuthorize("hasRole('USER')")
-	@GetMapping(value = "/student/{Id}/")
-	public APIResponseModel fetchStudentDetails(@PathVariable long Id)
+	@PreAuthorize("hasRole('TEACHER')")
+	@GetMapping(value = "/teacher/{Id}")
+	public APIResponseModel fetchStudentDetails(@PathVariable Long Id)
 	{
-//		if(ReportTypeEnum.issued.equals(reportType))
-//		{
-			String oauthHeader = request.getHeader(MemberServiceConstants.OAUTH_HEADER);
-			return studentService.fetchStudentDetails(Id, oauthHeader);
-		}
+			return teacherService.fetchStudentDetails(Id);
+	}
 
-//		else
-//			return null;
-//	}
-	@PreAuthorize("hasRole('USER')")
-	@GetMapping(value = "/student/attendance/{Id}/")
+	@PreAuthorize("hasRole('STUDENT')")
+	@GetMapping(value = "/student/attendance/{Id}")
 	public APIResponseModel viewAttendance(@PathVariable long Id)
 	{
-//		if(ReportTypeEnum.issued.equals(reportType))
-//		{
-			String oauthHeader = request.getHeader(MemberServiceConstants.OAUTH_HEADER);
-			return studentService.fetchAttendance(Id, oauthHeader);
-		}
+			return studentService.fetchAttendance(Id);
+	}
 
-//		else
-//			return null;
-//	}
-
-	@PreAuthorize("hasRole('USER')")
-	@PostMapping(value = "/teacher/attendance/{Id}/")
-	public APIResponseModel raiseBookRequest(@RequestBody AttendanceHistory attendanceHistory)
+	@PreAuthorize("hasRole('STUDENT')")
+	@PostMapping(value = "/teacher/attendance")
+	public APIResponseModel markAttendance(@RequestBody Attendance attendance)
 	{
-		//return teacherService.save(attendanceHistory);
+		teacherService.markAttendance(attendance);
 		return null;
 	}
 

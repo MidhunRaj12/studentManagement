@@ -1,4 +1,3 @@
-com\infosys\studentmanage\admin\kafka\DataReceiverConfig.class
 com\infosys\studentmanage\admin\repository\TeacherRepo.class
 com\infosys\studentmanage\admin\constants\AdminServiceConstants.class
 com\infosys\studentmanage\admin\model\Student.class
@@ -6,7 +5,6 @@ com\infosys\studentmanage\admin\model\Teacher.class
 com\infosys\studentmanage\admin\AdminServiceApplication.class
 com\infosys\studentmanage\admin\service\AdminService.class
 com\infosys\studentmanage\admin\controller\AdminController.class
-com\infosys\studentmanage\admin\kafka\DataReceiver.class
 com\infosys\studentmanage\admin\utils\AdminServiceUtils.class
 com\infosys\studentmanage\admin\repository\StudentRepo.class
 com\infosys\studentmanage\admin\config\ResourceServerConfig.class

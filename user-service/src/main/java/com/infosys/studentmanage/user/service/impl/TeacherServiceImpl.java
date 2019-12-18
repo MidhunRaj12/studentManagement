@@ -1,14 +1,27 @@
 package com.infosys.studentmanage.user.service.impl;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+
+import com.infosys.studentmanage.user.model.Teacher;
 import com.infosys.studentmanage.user.constants.MemberServiceConstants;
+import com.infosys.studentmanage.user.kafka.EventSender;
 import com.infosys.studentmanage.user.model.APIResponseModel;
+import com.infosys.studentmanage.user.model.Attendance;
+import com.infosys.studentmanage.user.model.CourseSchedule;
+import com.infosys.studentmanage.user.model.Student;
 import com.infosys.studentmanage.user.model.User;
+import com.infosys.studentmanage.user.repository.AttendanceRepo;
+import com.infosys.studentmanage.user.repository.ScheduleRepo;
+import com.infosys.studentmanage.user.repository.StudentRepo;
+import com.infosys.studentmanage.user.repository.TeacherRepo;
 import com.infosys.studentmanage.user.repository.UserRepo;
 import com.infosys.studentmanage.user.service.TeacherService;
 import com.infosys.studentmanage.user.utils.AttendanceUtils;
@@ -17,8 +30,15 @@ import com.infosys.studentmanage.user.utils.AttendanceUtils;
 public class TeacherServiceImpl implements TeacherService{
 
 	@Autowired
-	UserRepo memberRepository;
-	
+	ScheduleRepo scheduleRepo;
+	@Autowired
+	StudentRepo StudentRepository;
+	@Autowired
+	TeacherRepo teacherRepository;
+	@Autowired
+	AttendanceRepo attendanceRepo;
+	@Autowired
+	EventSender eventSender;
 	@Autowired
 	AttendanceUtils utils;
 	
@@ -28,42 +48,90 @@ public class TeacherServiceImpl implements TeacherService{
     }
 	
 	@Override
-	public APIResponseModel save(User member) {
+	public APIResponseModel fetchCourseSchedule(Long Id) {
 		APIResponseModel response = null;
 		try
 		{
-			if(StringUtils.isEmpty(member.getMemberName()) || StringUtils.isEmpty(member.getPassword()))
-			{
-				response = utils.getResponseModel(MemberServiceConstants.CODE_INVALID_INPUT, 
-						MemberServiceConstants.MESSAGE_INVALID_INPUT);
-			}
-			else if(StringUtils.isEmpty(member.getRoleId()))
-			{
-				response = utils.getResponseModel(MemberServiceConstants.CODE_INVALID_ROLE, 
-						MemberServiceConstants.MESSAGE_INVALID_ROLE);
-			}
-			else
-			{
-				CharSequence csPassword = member.getPassword();
-				member.setPassword(encoder().encode(csPassword));
-				memberRepository.save(member);
-				response = utils.getResponseModel(MemberServiceConstants.CODE_SUCCESS, 
-						MemberServiceConstants.MESSAGE_SUCCESS, member);
-			}
+			List<CourseSchedule> courseScheduleList = scheduleRepo.findByTeacherId(Id);
+			response = utils.getResponseModel(MemberServiceConstants.CODE_SUCCESS, courseScheduleList, 
+					MemberServiceConstants.MESSAGE_SUCCESS);
 		}
 		catch(Exception e)
 		{
-
 			response = utils.getResponseModel(MemberServiceConstants.CODE_EXCEPTION, 
 					MemberServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
-		
 		}
 		return response;
 	}
 
 	@Override
-	public User findById(Long id) {
-		return memberRepository.findById(id).get();
+	public APIResponseModel fetchStudentDetails(Long Id) {
+
+		APIResponseModel response = null;
+		try {
+			Student student = StudentRepository.findById(Id).get();
+			response = utils.getResponseModel(MemberServiceConstants.CODE_SUCCESS,
+					MemberServiceConstants.MESSAGE_SUCCESS, student);
+		} catch (Exception e) {
+			response = utils.getResponseModel(MemberServiceConstants.CODE_EXCEPTION,
+					MemberServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		}
+		return response;
+		
+	}
+	
+	@Override
+	public APIResponseModel findTeacerById(Long teacherId) {
+		APIResponseModel response = null;
+		try {
+			Teacher teacher = teacherRepository.findById(teacherId).get();
+			response = utils.getResponseModel(MemberServiceConstants.CODE_SUCCESS,
+					MemberServiceConstants.MESSAGE_SUCCESS, teacher);
+		} catch (Exception e) {
+			response = utils.getResponseModel(MemberServiceConstants.CODE_EXCEPTION,
+					MemberServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		}
+		return response;
+	}
+//	@Override
+//	public User findById(Long id) {
+//		return userRepository.findById(id).get();
+//	}
+	
+	
+	@Override
+	public APIResponseModel markAttendance(Attendance attendance) {
+		APIResponseModel response = null;
+		try
+		{
+			if(StringUtils.isEmpty(attendance.getCourse_id()) || StringUtils.isEmpty(attendance.getStudent_id()) ||StringUtils.isEmpty(attendance.getCourse_time()))
+			{
+				response = utils.getResponseModel(MemberServiceConstants.CODE_INVALID_INPUT, 
+						MemberServiceConstants.MESSAGE_INVALID_INPUT);
+			}
+			else
+			{
+				Attendance daoObject = attendanceRepo.findById(attendance.getStudent_id()).get();	
+				if(daoObject.getAttended() == true || daoObject.getAttended() == false ){
+					try {
+	//					eventSender.send(attendance);
+					} catch(Exception e)
+					{
+						response = utils.getResponseModel(MemberServiceConstants.CODE_KAFKA_ERROR, 
+								MemberServiceConstants.MESSAGE_KAFKA_ERROR + e.getMessage());
+					}
+				}
+			}
+
+		}
+		catch(Exception e)
+		{
+			response = utils.getResponseModel(MemberServiceConstants.CODE_EXCEPTION, 
+					MemberServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		}
+
+		return response;
 	}
 
 }
+

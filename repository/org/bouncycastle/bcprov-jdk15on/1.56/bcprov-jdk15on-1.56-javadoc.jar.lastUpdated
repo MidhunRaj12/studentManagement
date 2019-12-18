@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Dec 15 00:20:47 IST 2019
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1576349447290
+https\://repo.spring.io/milestone/.error=Could not transfer artifact org.bouncycastle\:bcprov-jdk15on\:jar\:javadoc\:1.56 from/to spring-milestones (https\://repo.spring.io/milestone)\: repo.spring.io
+@default-spring-milestones-https\://repo.spring.io/milestone/.lastUpdated=1576349447287
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.bouncycastle\:bcprov-jdk15on\:jar\:javadoc\:1.56 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

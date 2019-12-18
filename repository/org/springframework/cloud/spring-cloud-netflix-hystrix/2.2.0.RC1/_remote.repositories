@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Dec 14 11:51:53 IST 2019
+spring-cloud-netflix-hystrix-2.2.0.RC1.jar>spring-milestones=
+spring-cloud-netflix-hystrix-2.2.0.RC1-sources.jar>spring-milestones=
+spring-cloud-netflix-hystrix-2.2.0.RC1.pom>spring-milestones=

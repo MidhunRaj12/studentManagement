@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Dec 14 10:16:30 IST 2019
+stax2-api-4.2.jar>central=
+stax2-api-4.2-sources.jar>central=
+stax2-api-4.2.pom>central=

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 16 00:49:13 IST 2019
+spring-cloud-starter-netflix-hystrix-2.2.0.M3.pom>spring-milestones=
+spring-cloud-starter-netflix-hystrix-2.2.0.M3.jar>spring-milestones=
+spring-cloud-starter-netflix-hystrix-2.2.0.M3-javadoc.jar>spring-milestones=

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Dec 15 00:34:51 IST 2019
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1576349479683
+https\://repo.spring.io/milestone/.lastUpdated=1576350291596
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework.kafka\:spring-kafka\:pom\:2.3.1.RELEASE from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

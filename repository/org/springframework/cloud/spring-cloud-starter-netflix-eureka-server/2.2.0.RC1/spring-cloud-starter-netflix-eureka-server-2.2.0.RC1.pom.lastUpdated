@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Dec 15 18:56:29 IST 2019
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1576349444582
+https\://repo.spring.io/milestone/.lastUpdated=1576416389045
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-starter-netflix-eureka-server\:pom\:2.2.0.RC1 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 16 00:05:26 IST 2019
+jackson-databind-2.8.10.jar>central=
+jackson-databind-2.8.10-sources.jar>central=
+jackson-databind-2.8.10.pom>central=

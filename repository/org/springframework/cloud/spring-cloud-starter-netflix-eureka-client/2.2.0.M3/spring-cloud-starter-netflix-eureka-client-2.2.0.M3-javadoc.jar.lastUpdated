@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Dec 14 16:44:29 IST 2019
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1576322069396
+https\://repo.spring.io/milestone/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-starter-netflix-eureka-client\:jar\:javadoc\:2.2.0.M3 from/to spring-milestones (https\://repo.spring.io/milestone)\: repo.spring.io
+@default-spring-milestones-https\://repo.spring.io/milestone/.lastUpdated=1576322069391
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-starter-netflix-eureka-client\:jar\:javadoc\:2.2.0.M3 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 16 00:49:05 IST 2019
+spring-cloud-netflix-zuul-2.2.0.M3-sources.jar>spring-milestones=
+spring-cloud-netflix-zuul-2.2.0.M3.jar>spring-milestones=
+spring-cloud-netflix-zuul-2.2.0.M3.pom>spring-milestones=

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infosys.studentmanage.user.UserServiceApplication;
 import com.infosys.studentmanage.user.constants.MemberServiceConstants;
-import com.infosys.studentmanage.user.constants.MemberServiceConstants.ReportTypeEnum;
 import com.infosys.studentmanage.user.model.APIResponseModel;
 import com.infosys.studentmanage.user.model.Attendance;
 import com.infosys.studentmanage.user.model.User;
@@ -26,7 +25,7 @@ import com.infosys.studentmanage.user.service.StudentService;
 import com.infosys.studentmanage.user.service.TeacherService;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/user")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserController {
 	
@@ -44,28 +43,21 @@ public class UserController {
     }
 	
 	@PreAuthorize("hasRole('STUDENT')")
-	@PostMapping("/student/{Id}")
+	@GetMapping("/student/{Id}")
 	public APIResponseModel studentDetails(@PathVariable("Id") Long Id)
 	{
 		return studentService.findStudentById(Id);
 	}
-
+	
 	@PreAuthorize("hasRole('TEACHER')")
-	@PostMapping("/teacher/{Id}")
+	@GetMapping("/teacher/{Id}")
 	public APIResponseModel teacherDetails(@PathVariable("Id") Long Id)
 	{
 		return teacherService.findTeacerById(Id);
 	}
 	
-//	@PreAuthorize("hasRole('ADMIN')")
-//	@PutMapping(value = "/{issueId}")
-//	public APIResponseModel raiseBookRequest(@PathVariable long issueId, @FormParam(value = "status") String status)
-//	{
-//		return teacherService.update(issueId, status);
-//	}
-	
 	@PreAuthorize("hasRole('TEACHER')")
-	@GetMapping(value = "/teacher/{teacherId}")
+	@GetMapping(value = "/teacher/schedule/{teacherId}")
 	public APIResponseModel fetchSchedule(@PathVariable Long teacherId)
 	{
 			return teacherService.fetchCourseSchedule(teacherId);		
@@ -73,7 +65,7 @@ public class UserController {
 	}
 	
 	@PreAuthorize("hasRole('TEACHER')")
-	@GetMapping(value = "/teacher/{Id}")
+	@GetMapping(value = "/teacher/studentdetail/{Id}")
 	public APIResponseModel fetchStudentDetails(@PathVariable Long Id)
 	{
 			return teacherService.fetchStudentDetails(Id);
@@ -86,7 +78,7 @@ public class UserController {
 			return studentService.fetchAttendance(Id);
 	}
 
-	@PreAuthorize("hasRole('STUDENT')")
+	@PreAuthorize("hasRole('TEACHER')")
 	@PostMapping(value = "/teacher/attendance")
 	public APIResponseModel markAttendance(@RequestBody Attendance attendance)
 	{

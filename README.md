@@ -5,6 +5,7 @@
   1.Java 1.8
   2.MySQL DB server
   3.Apache Kafka
+  
   https://github.com/MidhunRaj12/studentManagement/
 
   ****************************************Starting Services***************************
@@ -15,6 +16,6 @@
   5.Start the Admin Service 
   6.Start the User Service 
   7.Start the Zuul Service
-
+Find Jar file placed in Jars folder
 
 ************ENDS HERE************

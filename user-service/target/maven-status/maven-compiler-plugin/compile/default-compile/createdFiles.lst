@@ -17,7 +17,6 @@ com\infosys\studentmanage\user\model\UserDTO.class
 com\infosys\studentmanage\user\service\impl\StudentsServiceImpl.class
 com\infosys\studentmanage\user\service\impl\TeacherServiceImpl.class
 com\infosys\studentmanage\user\config\ResourceServerConfig.class
-com\infosys\studentmanage\user\constants\MemberServiceConstants$ReportTypeEnum.class
 com\infosys\studentmanage\user\model\Student.class
 com\infosys\studentmanage\user\UserServiceApplication.class
 com\infosys\studentmanage\user\service\TeacherService.class

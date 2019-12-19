@@ -14,17 +14,17 @@ import com.infosys.studentmanage.user.model.Attendance;
 public class EventSender {
 
 
-//	@Autowired
-//	private KafkaTemplate<String, String> kafkaTemplate;
-//	
-//	@Value("${kafka.topic.event}")
-//	private String topic;
-//
-//	public void send(Attendance payload) throws InterruptedException, ExecutionException {
-//		
-//		Gson gson = new Gson();
-//		String json = gson.toJson(payload);
-//		kafkaTemplate.send(topic, json);
-//		System.out.println("Message has been posted to Subscriber");
-//	}
+	@Autowired
+	private KafkaTemplate<String, String> kafkaTemplate;
+	
+	@Value("${kafka.topic.event}")
+	private String topic;
+
+	public void send(Attendance payload) throws InterruptedException, ExecutionException {
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(payload);
+		kafkaTemplate.send(topic, json);
+		System.out.println("Message has been posted to Subscriber");
+	}
 }

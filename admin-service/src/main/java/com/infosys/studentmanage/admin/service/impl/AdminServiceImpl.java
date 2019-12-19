@@ -96,8 +96,8 @@ public class AdminServiceImpl implements AdminService {
 			}
 			else if(StringUtils.isEmpty(student.getId()))
 			{
-				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_STATUS, 
-						AdminServiceConstants.MESSAGE_INVALID_STATUS);
+				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_ID, 
+						AdminServiceConstants.MESSAGE_INVALID_ID);
 			}
 			else
 			{
@@ -125,8 +125,8 @@ public class AdminServiceImpl implements AdminService {
 		{
 			if(StringUtils.isEmpty(teacher.getId()))
 			{
-				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_STATUS, 
-						AdminServiceConstants.MESSAGE_INVALID_STATUS);
+				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_ID, 
+						AdminServiceConstants.MESSAGE_INVALID_ID);
 			}
 			else
 			{

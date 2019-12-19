@@ -114,7 +114,7 @@ public class TeacherServiceImpl implements TeacherService{
 				Attendance daoObject = attendanceRepo.findById(attendance.getStudent_id()).get();	
 				if(daoObject.getAttended() == true || daoObject.getAttended() == false ){
 					try {
-	//					eventSender.send(attendance);
+						eventSender.send(attendance);
 					} catch(Exception e)
 					{
 						response = utils.getResponseModel(MemberServiceConstants.CODE_KAFKA_ERROR, 

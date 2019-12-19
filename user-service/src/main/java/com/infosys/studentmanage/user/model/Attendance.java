@@ -11,17 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name ="attendance")
-public class Attendance implements Serializable {
+public class Attendance {
 	
-	@Id
+
     @Column(name = "course_id")
     private Long course_id;
 	
 	@Id
     @Column(name = "student_id")
-    private Long student_id;
+    private Long studentId;
 	
-	@Id
+
     @Column(name = "course_time")
     private Date course_time;
 	
@@ -34,10 +34,10 @@ public class Attendance implements Serializable {
 		this.course_id = course_id;
 	}
 	public Long getStudent_id() {
-		return student_id;
+		return studentId;
 	}
 	public void setStudent_id(Long student_id) {
-		this.student_id = student_id;
+		this.studentId = student_id;
 	}
 	public Date getCourse_time() {
 		return course_time;
@@ -54,7 +54,7 @@ public class Attendance implements Serializable {
     
 	@Override
 	public String toString() {
-		return "Student [id=" + course_id + ", student_id=" + student_id +  ", course_time=" + course_time
+		return "Student [id=" + course_id + ", student_id=" + studentId +  ", course_time=" + course_time
 				+ ", attended=" + attended +  "]";
 	}
 }

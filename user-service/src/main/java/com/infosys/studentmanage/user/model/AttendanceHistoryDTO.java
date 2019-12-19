@@ -8,8 +8,7 @@ public class AttendanceHistoryDTO {
 	
 
     private long id;
-    private long studentId;
-    private Long bookId;
+    private long student_Id;
     private Date courseDate;
     private boolean attended;
 
@@ -22,19 +21,11 @@ public class AttendanceHistoryDTO {
 	}
 
 	public long getStudentId() {
-		return studentId;
+		return student_Id;
 	}
 
-	public void setStudentId(long studentId) {
-		this.studentId = studentId;
-	}
-
-	public Long getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(Long bookId) {
-		this.bookId = bookId;
+	public void setStudentId(long student_Id) {
+		this.student_Id = student_Id;
 	}
 
 	public Date getCourseDate() {

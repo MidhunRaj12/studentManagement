@@ -48,7 +48,7 @@ public class TeacherServiceImpl implements TeacherService{
     }
 	
 	@Override
-	public APIResponseModel fetchCourseSchedule(long Id) {
+	public APIResponseModel fetchCourseSchedule(Long Id) {
 		APIResponseModel response = null;
 		try
 		{

@@ -10,6 +10,6 @@ import com.infosys.studentmanage.user.model.CourseSchedule;
 @Repository
 public interface ScheduleRepo extends CrudRepository<CourseSchedule, Long>{
 	
-	List<CourseSchedule> findByTeacherId(long Id);
+	List<CourseSchedule> findByTeacherId(Long Id);
 
 }

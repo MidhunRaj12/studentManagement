@@ -15,7 +15,7 @@ public class CourseSchedule {
     private long id;
     
 	@Column(name = "teacher_id")
-    private long teacher_id;
+    private long teacherId;
      
     @Column(name = "course_date")
     private Date course_date;
@@ -29,11 +29,11 @@ public class CourseSchedule {
 	}
 
 	public long getTeacherId() {
-		return teacher_id;
+		return teacherId;
 	}
 
-	public void setTeacherId(long teacher_id) {
-		this.teacher_id = teacher_id;
+	public void setTeacherId(long teacherId) {
+		this.teacherId = teacherId;
 	}
 
 	public Date getCourseDate() {

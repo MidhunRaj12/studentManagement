@@ -23,6 +23,6 @@ public interface AdminService {
     APIResponseModel findAllStudents();
     APIResponseModel getReport();
     
-    void markAttendance(Attendance attendance);
+    void markAttendance(Attendance attendance); //called from User Service via Kafka
 
 }

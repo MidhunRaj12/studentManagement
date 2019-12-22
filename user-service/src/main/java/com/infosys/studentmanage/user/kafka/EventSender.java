@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import com.infosys.studentmanage.user.model.Attendance;
 
-@Component
+//@Component
 public class EventSender {
 
 

@@ -12,6 +12,9 @@ public class AdminServiceConstants {
 	public static final String CODE_INVALID_ID = "406";
 	public static final String MESSAGE_INVALID_ID = "Invalid Id";
 	
+	public static final long STUDENT_ROLE = 3;
+	public static final long TEACHER_ROLE = 2;
+	
 	public static final String CODE_EXCEPTION = "407";
 	public static final String MESSAGE_EXCEPTION = "Some issue occurred in the system. The Exception details are ";
 

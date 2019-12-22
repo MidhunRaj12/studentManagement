@@ -1,14 +1,16 @@
 package com.infosys.studentmanage.admin.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;import com.fasterxml.jackson.core.sym.Name;
 
 
 @Entity
 @Table(name = "student")
-
 public class Student {
 
     @Id
@@ -24,35 +26,49 @@ public class Student {
     @Column(name = "course_id")
     private Long courseId;
     
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name= "student_id", referencedColumnName = "user_id")
+     private User user;
+
 	public long getId() {
 		return id;
 	}
-	public Long getRegNo() {
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Long getReg_no() {
 		return reg_no;
 	}
-	public void setRegNo(Long reg_no) {
+
+	public void setReg_no(Long reg_no) {
 		this.reg_no = reg_no;
 	}
-	public String getStudentName() {
+
+	public String getName() {
 		return name;
 	}
-	public void setStudentName(String studentName) {
-		this.name = studentName;
-	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getCourseId() {
 		return courseId;
 	}
+
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name +  ", courseId=" + courseId
-				+ ", reg_no=" + reg_no +  "]";
+	public User getUser() {
+		return user;
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+ 
+    
 }

@@ -3,14 +3,18 @@ package com.infosys.studentmanage.admin.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.infosys.studentmanage.admin.constants.AdminServiceConstants;
 import com.infosys.studentmanage.admin.model.APIResponseModel;
 import com.infosys.studentmanage.admin.model.Attendance;
+import com.infosys.studentmanage.admin.model.Role;
 import com.infosys.studentmanage.admin.model.Student;
 import com.infosys.studentmanage.admin.model.Teacher;
+import com.infosys.studentmanage.admin.model.User;
 import com.infosys.studentmanage.admin.repository.AttendanceRepo;
 import com.infosys.studentmanage.admin.repository.StudentRepo;
 import com.infosys.studentmanage.admin.repository.TeacherRepo;
@@ -33,54 +37,69 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminServiceUtils utils;
 
+	@Bean
+    public BCryptPasswordEncoder encoder(){
+        return new BCryptPasswordEncoder();
+	}
+	
+
+
 	@Override
 	public APIResponseModel saveStudent(Student student) {
+	
 		APIResponseModel response = null;
 		try {
-			if (StringUtils.isEmpty(student.getStudentName())) {
-				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT,
+			if(StringUtils.isEmpty(student.getName()) || StringUtils.isEmpty(student.getUser().getPassword()))
+			{
+				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT, 
 						AdminServiceConstants.MESSAGE_INVALID_INPUT);
-				/*
-//				 * } else if (StringUtils.isEmpty(student.getStatus()) ||
-//				 * !AdminServiceConstants.AVAILABLE.equals(student.getStatus())) { response =
-//				 * utils.getResponseModel(AdminServiceConstants.CODE_INVALID_STATUS,
-//				 * AdminServiceConstants.MESSAGE_INVALID_STATUS);
-//				 */
-			} else {
+			}
+			else
+			{	
+				
+				student.getUser().setRole_id(AdminServiceConstants.STUDENT_ROLE);		
+				CharSequence csPassword = student.getUser().getPassword();
+				student.getUser().setPassword(encoder().encode(csPassword));
 				StudentRepository.save(student);
-				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
+				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS, 
 						AdminServiceConstants.MESSAGE_SUCCESS, student);
 			}
-		} catch (Exception e) {
-			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,
-					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
 		}
+		catch(Exception e)
+		{
 
+			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION, 
+					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		
+		}
 		return response;
 	}
 	
 	public APIResponseModel saveTeacher(Teacher teacher) {
 		APIResponseModel response = null;
 		try {
-			if (StringUtils.isEmpty(teacher.getTeacherName())) {
-				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT,
+			if(StringUtils.isEmpty(teacher.getTeacherName()) || StringUtils.isEmpty(teacher.getUser().getPassword()))
+			{
+				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT, 
 						AdminServiceConstants.MESSAGE_INVALID_INPUT);
-				/*
-//				 * } else if (StringUtils.isEmpty(student.getStatus()) ||
-//				 * !AdminServiceConstants.AVAILABLE.equals(student.getStatus())) { response =
-//				 * utils.getResponseModel(AdminServiceConstants.CODE_INVALID_STATUS,
-//				 * AdminServiceConstants.MESSAGE_INVALID_STATUS);
-//				 */
-			} else {
+			}
+			else
+			{
+				teacher.getUser().setRole_id(AdminServiceConstants.TEACHER_ROLE);		
+				CharSequence csPassword = teacher.getUser().getPassword();
+				teacher.getUser().setPassword(encoder().encode(csPassword));
 				TeacherRepository.save(teacher);
-				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS,
+				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS, 
 						AdminServiceConstants.MESSAGE_SUCCESS, teacher);
 			}
-		} catch (Exception e) {
-			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION,
-					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
 		}
+		catch(Exception e)
+		{
 
+			response = utils.getResponseModel(AdminServiceConstants.CODE_EXCEPTION, 
+					AdminServiceConstants.MESSAGE_EXCEPTION + e.getMessage());
+		
+		}
 		return response;
 	}
 
@@ -89,7 +108,7 @@ public class AdminServiceImpl implements AdminService {
 		APIResponseModel response = null;
 		try
 		{
-			if(StringUtils.isEmpty(student.getCourseId()) || StringUtils.isEmpty(student.getRegNo()))
+			if(StringUtils.isEmpty(student.getCourseId()) || StringUtils.isEmpty(student.getReg_no()))
 			{
 				response = utils.getResponseModel(AdminServiceConstants.CODE_INVALID_INPUT, 
 						AdminServiceConstants.MESSAGE_INVALID_INPUT);
@@ -103,8 +122,8 @@ public class AdminServiceImpl implements AdminService {
 			{
 				Student studentToUpdate = StudentRepository.findById(student.getId()).get();
 				studentToUpdate.setCourseId(student.getCourseId());
-				studentToUpdate.setRegNo(student.getRegNo());
-				studentToUpdate.setStudentName(student.getStudentName());
+				studentToUpdate.setReg_no(student.getReg_no());
+				studentToUpdate.setName(student.getName());
 				StudentRepository.save(studentToUpdate);
 				response = utils.getResponseModel(AdminServiceConstants.CODE_SUCCESS, 
 						AdminServiceConstants.MESSAGE_SUCCESS, student);

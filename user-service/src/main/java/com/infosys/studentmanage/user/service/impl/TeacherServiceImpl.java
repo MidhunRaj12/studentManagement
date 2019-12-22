@@ -1,6 +1,5 @@
 package com.infosys.studentmanage.user.service.impl;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,10 @@ import com.infosys.studentmanage.user.model.APIResponseModel;
 import com.infosys.studentmanage.user.model.Attendance;
 import com.infosys.studentmanage.user.model.CourseSchedule;
 import com.infosys.studentmanage.user.model.Student;
-import com.infosys.studentmanage.user.model.User;
 import com.infosys.studentmanage.user.repository.AttendanceRepo;
 import com.infosys.studentmanage.user.repository.ScheduleRepo;
 import com.infosys.studentmanage.user.repository.StudentRepo;
 import com.infosys.studentmanage.user.repository.TeacherRepo;
-import com.infosys.studentmanage.user.repository.UserRepo;
 import com.infosys.studentmanage.user.service.TeacherService;
 import com.infosys.studentmanage.user.utils.AttendanceUtils;
 
@@ -31,14 +28,19 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Autowired
 	ScheduleRepo scheduleRepo;
+	
 	@Autowired
 	StudentRepo StudentRepository;
+	
 	@Autowired
 	TeacherRepo teacherRepository;
+	
 	@Autowired
 	AttendanceRepo attendanceRepo;
+	
 	@Autowired
 	EventSender eventSender;
+	
 	@Autowired
 	AttendanceUtils utils;
 	
@@ -79,6 +81,7 @@ public class TeacherServiceImpl implements TeacherService{
 		return response;
 		
 	}
+	
 	
 	@Override
 	public APIResponseModel findTeacerById(Long teacher_Id) {
